@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using StateStuff;
+using UnityEngine.AI;
 
 public class SecondState : State<AI>
 {
@@ -13,8 +14,11 @@ public class SecondState : State<AI>
         {
             return;
         }
-
-        _instance = this;
+        //this._player = GameObject.FindWithTag("Player").transform;
+        //FollowPlayer = false;
+        //_collider = GetComponent<MeshCollider>();
+        //this._backtospot = this.Body.transform.position;
+        //this._backtorotation = this.Body.transform.rotation;
     }
 
     public static SecondState Instance
@@ -33,6 +37,7 @@ public class SecondState : State<AI>
     public override void EnterState(AI _owner)
     {
         Debug.Log("Entering Second State");
+        _instance = this;
     }
 
     public override void ExitState(AI _owner)
