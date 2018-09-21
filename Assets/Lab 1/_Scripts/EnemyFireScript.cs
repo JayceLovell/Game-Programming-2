@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SelectWayPointState : StateMachineBehaviour {
+public class EnemyFireScript : StateMachineBehaviour {
 
 	 // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-	override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-        AI ai = animator.gameObject.GetComponent<AI>();
-        ai.SetNextPoint();
-        Debug.Log("We have entered New Waypoint");
-    }
+	//override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+	//
+	//}
 
 	// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
 	//override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {

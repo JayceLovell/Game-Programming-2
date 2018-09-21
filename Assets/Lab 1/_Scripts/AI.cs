@@ -13,10 +13,13 @@ public class AI : MonoBehaviour
     private Transform[] waypoints = null;
     private Ray ray;
     private RaycastHit hit;
+    private int amountOfAmmo = 10;
 
     // Patrol state variables
     public Transform pointA;
     public Transform pointB;
+    public Transform pointC;
+    public Transform pointD;
     public UnityEngine.AI.NavMeshAgent navMeshAgent;
 
     private void Start()
@@ -25,10 +28,14 @@ public class AI : MonoBehaviour
         animator = gameObject.GetComponent<Animator>();
         pointA = GameObject.Find("p1").transform;
         pointB = GameObject.Find("p2").transform;
+        pointC = GameObject.Find("p3").transform;
+        pointD = GameObject.Find("p4").transform;
         navMeshAgent = gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>();
-        waypoints = new Transform[2] {
+        waypoints = new Transform[4] {
             pointA,
-            pointB
+            pointB,
+            pointC,
+            pointD
         };
         currentTarget = 0;
         navMeshAgent.SetDestination(waypoints[currentTarget].position);
@@ -58,22 +65,32 @@ public class AI : MonoBehaviour
         {
             animator.SetBool("isPlayerVisible", false);
         }
-
         //Lastly, we get the distance to the next waypoint target
         distanceFromTarget = Vector3.Distance(waypoints[currentTarget].position, transform.position);
         animator.SetFloat("distanceFromWaypoint", distanceFromTarget);
+        animator.SetInteger("amountOfAmmo",amountOfAmmo);
     }
     public void SetNextPoint()
     {
         switch (currentTarget)
         {
             case 0:
-                currentTarget = 1;
+                currentTarget = 3;
                 break;
             case 1:
-                currentTarget = 0;
+                currentTarget = 2;
+                break;
+            case 2:
+                currentTarget = 1;
+               break;
+            case 3:
+               currentTarget = 0;
                 break;
         }
         navMeshAgent.SetDestination(waypoints[currentTarget].position);
+    }
+    public void ChasePlayer()
+    {
+        navMeshAgent.SetDestination(player.transform.position);
     }
 }
