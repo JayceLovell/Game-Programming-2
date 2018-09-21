@@ -13,7 +13,7 @@ public class AI : MonoBehaviour
     private Transform[] waypoints = null;
     private Ray ray;
     private RaycastHit hit;
-    private int amountOfAmmo = 10;
+    private  int _amountOfAmmo = 10;
 
     // Patrol state variables
     public Transform pointA;
@@ -23,6 +23,18 @@ public class AI : MonoBehaviour
     public Transform pointE;
     public Transform pointF;
     public UnityEngine.AI.NavMeshAgent navMeshAgent;
+
+    public int AmountOfAmmo
+    {
+        get
+        {
+            return this._amountOfAmmo;
+        }
+        set
+        {
+            _amountOfAmmo = value;
+        }
+    }
 
     private void Start()
     {
@@ -72,10 +84,19 @@ public class AI : MonoBehaviour
         {
             animator.SetBool("isPlayerVisible", false);
         }
+
+        if(_amountOfAmmo <= 0)
+        {
+            animator.SetBool("outOfAmmo", true);
+        }
+        else
+        {
+            animator.SetBool("outOfAmmo", false);
+        }
         //Lastly, we get the distance to the next waypoint target
         distanceFromTarget = Vector3.Distance(waypoints[currentTarget].position, transform.position);
         animator.SetFloat("distanceFromWaypoint", distanceFromTarget);
-        animator.SetInteger("amountOfAmmo",amountOfAmmo);
+        animator.SetInteger("amountOfAmmo",_amountOfAmmo);
     }
     public void SetNextPoint()
     {
