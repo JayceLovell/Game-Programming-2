@@ -20,6 +20,8 @@ public class AI : MonoBehaviour
     public Transform pointB;
     public Transform pointC;
     public Transform pointD;
+    public Transform pointE;
+    public Transform pointF;
     public UnityEngine.AI.NavMeshAgent navMeshAgent;
 
     private void Start()
@@ -30,12 +32,17 @@ public class AI : MonoBehaviour
         pointB = GameObject.Find("p2").transform;
         pointC = GameObject.Find("p3").transform;
         pointD = GameObject.Find("p4").transform;
+        pointE = GameObject.Find("p5").transform;
+        pointF = GameObject.Find("p6").transform;
+
         navMeshAgent = gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>();
-        waypoints = new Transform[4] {
+        waypoints = new Transform[6] {
             pointA,
             pointB,
             pointC,
-            pointD
+            pointD,
+            pointE,
+            pointF
         };
         currentTarget = 0;
         navMeshAgent.SetDestination(waypoints[currentTarget].position);
@@ -75,15 +82,21 @@ public class AI : MonoBehaviour
         switch (currentTarget)
         {
             case 0:
-                currentTarget = 3;
+                currentTarget = 5;
                 break;
             case 1:
-                currentTarget = 2;
+                currentTarget = 4;
                 break;
             case 2:
+                currentTarget = 3;
+                break;
+            case 3:
+                currentTarget = 2;
+                break;
+            case 4:
                 currentTarget = 1;
                break;
-            case 3:
+            case 5:
                currentTarget = 0;
                 break;
         }
