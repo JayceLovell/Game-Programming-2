@@ -129,7 +129,7 @@ public class AI : MonoBehaviour
     }
     public void StopsAndLook()
     {
-        navMeshAgent.Stop();
+        navMeshAgent.isStopped = true;
         transform.Rotate(Vector3.right * Time.deltaTime);
     }
 }
