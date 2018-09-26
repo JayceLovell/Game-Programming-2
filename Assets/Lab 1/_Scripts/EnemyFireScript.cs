@@ -8,6 +8,7 @@ public class EnemyFireScript : StateMachineBehaviour {
 	override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
         AI ai = animator.gameObject.GetComponent<AI>();
         ai.AmountOfAmmo -= 1;
+        Debug.Log("Removed 1 ammo");
     }
 
 	// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

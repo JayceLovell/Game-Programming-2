@@ -87,11 +87,11 @@ public class AI : MonoBehaviour
 
         if(_amountOfAmmo <= 0)
         {
-            animator.SetBool("outOfAmmo", true);
+            animator.SetBool("IsOutOfAmmo", true);
         }
         else
         {
-            animator.SetBool("outOfAmmo", false);
+            animator.SetBool("IsOutOfAmmo", false);
         }
         //Lastly, we get the distance to the next waypoint target
         distanceFromTarget = Vector3.Distance(waypoints[currentTarget].position, transform.position);
@@ -126,5 +126,10 @@ public class AI : MonoBehaviour
     public void ChasePlayer()
     {
         navMeshAgent.SetDestination(player.transform.position);
+    }
+    public void StopsAndLook()
+    {
+        navMeshAgent.Stop();
+        transform.Rotate(Vector3.right * Time.deltaTime);
     }
 }

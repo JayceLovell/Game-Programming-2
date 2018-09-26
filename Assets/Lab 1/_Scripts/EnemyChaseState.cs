@@ -8,13 +8,13 @@ public class EnemyChaseState : StateMachineBehaviour {
 	override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
         AI ai = animator.gameObject.GetComponent<AI>();
         ai.ChasePlayer();
-        Debug.Log("Entering Chase State");
     }
 
 	// OnStateUpdate is called before OnStateUpdate is called on any state inside this state machine
-	//override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-	//
-	//}
+	override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+        AI ai = animator.gameObject.GetComponent<AI>();
+        ai.ChasePlayer();
+    }
 
 	// OnStateExit is called before OnStateExit is called on any state inside this state machine
 	override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
