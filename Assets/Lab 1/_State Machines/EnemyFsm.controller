@@ -984,9 +984,9 @@ AnimatorStateMachine:
   - {fileID: 1101085199668812524}
   m_EntryTransitions: []
   m_StateMachineTransitions:
-  - first: {fileID: 1107789347055471636}
-    second: []
   - first: {fileID: 1107470338960790614}
+    second: []
+  - first: {fileID: 1107789347055471636}
     second: []
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 48, y: 360, z: 0}
@@ -1028,7 +1028,7 @@ AnimatorStateMachine:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Patrol
+  m_Name: Grounded
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 1102800591812719814}
