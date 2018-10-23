@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class AI : MonoBehaviour
 {
+    
+
     private GameObject player;
     private Animator animator;
     private float maxDistanceToCheck = 6.0f;
@@ -58,6 +60,8 @@ public class AI : MonoBehaviour
         };
         currentTarget = 0;
         navMeshAgent.SetDestination(waypoints[currentTarget].position);
+        //
+        Debug.Log(navMeshAgent.IsOnOffMeshink());
     }
 
     private void Update()
