@@ -6,14 +6,13 @@ public class AI : MonoBehaviour
     
 
     private GameObject player;
-    private GameObject door;
     private Animator animator;
     private float maxDistanceToCheck = 6.0f;
     private float currentDistance;
     private Vector3 checkDirection;
-    private int currentTarget;
+    public int currentTarget;
     private float distanceFromTarget;
-    private Transform[] waypoints = null;
+    public Transform[] waypoints = null;
     private Ray ray;
     private RaycastHit hit;
     private  int _amountOfAmmo = 10;
@@ -47,7 +46,6 @@ public class AI : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindWithTag("Player");
-        door = GameObject.FindWithTag("Door");
         animator = gameObject.GetComponent<Animator>();
         pointA = GameObject.Find("p1").transform;
         pointB = GameObject.Find("p2").transform;
@@ -65,7 +63,7 @@ public class AI : MonoBehaviour
             pointE,
             pointF
         };
-        currentTarget = 0;
+        currentTarget = Random.Range(0,5);
         navMeshAgent.SetDestination(waypoints[currentTarget].position);
         //
     }
@@ -85,13 +83,12 @@ public class AI : MonoBehaviour
             if (hit.collider.gameObject == player)
             {
                 animator.SetBool("isPlayerVisible", true);
-                Debug.Log("see player");
             }
             else
             {
                 animator.SetBool("isPlayerVisible", false);
             }
-            if(hit.collider.gameObject==door && OnLink && !_isOpeningDoor)
+            if(hit.transform.gameObject.CompareTag("Door") && OnLink && !_isOpeningDoor)
             {
                 navMeshAgent.isStopped = true;
                 Debug.Log("Stopping");
@@ -125,26 +122,31 @@ public class AI : MonoBehaviour
         animator.SetFloat("distanceFromWaypoint", distanceFromTarget);
         animator.SetInteger("amountOfAmmo",_amountOfAmmo);
         //checks if about to go through door
-        OnLink= navMeshAgent.isOnOffMeshLink;
+        OnLink = navMeshAgent.isOnOffMeshLink;
+        if (OnLink && !Physics.Raycast(ray, out hit, maxDistanceToCheck))
+        {
+            navMeshAgent.isStopped=true;
+            StopsAndLook();
+        }
     }
     public void SetNextPoint()
     {
         switch (currentTarget)
         {
             case 0:
-                currentTarget = 5;
+                currentTarget = 1;
                 break;
             case 1:
-                currentTarget = 4;
+                currentTarget = 2;
                 break;
             case 2:
                 currentTarget = 3;
                 break;
             case 3:
-                currentTarget = 2;
+                currentTarget = 4;
                 break;
             case 4:
-                currentTarget = 1;
+                currentTarget = 5;
                break;
             case 5:
                currentTarget = 0;
@@ -155,7 +157,7 @@ public class AI : MonoBehaviour
     public void ChasePlayer()
     {
         navMeshAgent.SetDestination(player.transform.position);
-        navMeshAgent.isStopped = false;
+        //navMeshAgent.isStopped = false;
     }
     public void StopsAndLook()
     {

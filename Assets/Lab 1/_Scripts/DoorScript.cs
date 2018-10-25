@@ -9,15 +9,19 @@ public class DoorScript : MonoBehaviour {
     private GameObject _door;
     private bool _opening;
 
-	// Use this for initialization
-	void Start () {
+    AudioSource Sound;
+
+    // Use this for initialization
+    void Start () {
         _door = this.gameObject;
         DefaultPosition.Set(_door.transform.position.x, _door.transform.position.y, _door.transform.position.z);
         _target.Set(DefaultPosition.x, 2.86f, DefaultPosition.z);
+        Sound = GetComponent<AudioSource>();
+
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
         if (_door.transform.position.y <= _target.y && _opening){
             transform.position += transform.up * Time.deltaTime;
         }
@@ -30,10 +34,12 @@ public class DoorScript : MonoBehaviour {
     public void Open()
     {
         _opening = true;
+        Sound.Play();
     }
     public void Close()
     {
         _opening = false;
+        Sound.Play();
     }
 
 }
