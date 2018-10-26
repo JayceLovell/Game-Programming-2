@@ -123,11 +123,11 @@ public class AI : MonoBehaviour
         animator.SetInteger("amountOfAmmo",_amountOfAmmo);
         //checks if about to go through door
         OnLink = navMeshAgent.isOnOffMeshLink;
-        if (OnLink && !Physics.Raycast(ray, out hit, maxDistanceToCheck))
+        /*if (OnLink && !Physics.Raycast(ray, out hit, maxDistanceToCheck))
         {
             navMeshAgent.isStopped=true;
             StopsAndLook();
-        }
+        }*/
     }
     public void SetNextPoint()
     {
