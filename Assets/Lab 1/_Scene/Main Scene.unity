@@ -14,10 +14,10 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_Fog: 1
+  m_FogColor: {r: 0, g: 0, b: 0, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.3
+  m_FogDensity: 0.33
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0, g: 0, b: 0, a: 1}
@@ -38,13 +38,13 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -4848,72 +4848,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 316565457}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &322099422
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 322099424}
-  - component: {fileID: 322099423}
-  m_Layer: 0
-  m_Name: Directional Light
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!108 &322099423
-Light:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 322099422}
-  m_Enabled: 1
-  serializedVersion: 8
-  m_Type: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
-  m_Range: 10
-  m_SpotAngle: 30
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_Lightmapping: 4
-  m_LightShadowCasterMode: 0
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
---- !u!4 &322099424
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 322099422}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: -10.607069, y: 12.347441, z: 7.507921}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &354189436
 GameObject:
   m_ObjectHideFlags: 0
@@ -11958,34 +11892,52 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4864563063802704, guid: 90a793745acac0440825348466c2ad5d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -5.6
+      value: -4.5
       objectReference: {fileID: 0}
     - target: {fileID: 4864563063802704, guid: 90a793745acac0440825348466c2ad5d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 2.2
       objectReference: {fileID: 0}
     - target: {fileID: 4864563063802704, guid: 90a793745acac0440825348466c2ad5d, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 29.3
+      value: 28.62
       objectReference: {fileID: 0}
     - target: {fileID: 4864563063802704, guid: 90a793745acac0440825348466c2ad5d, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.0038256443
       objectReference: {fileID: 0}
     - target: {fileID: 4864563063802704, guid: 90a793745acac0440825348466c2ad5d, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0.7071068
+      value: -0.7865967
       objectReference: {fileID: 0}
     - target: {fileID: 4864563063802704, guid: 90a793745acac0440825348466c2ad5d, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.0048737666
       objectReference: {fileID: 0}
     - target: {fileID: 4864563063802704, guid: 90a793745acac0440825348466c2ad5d, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 0.61743605
       objectReference: {fileID: 0}
     - target: {fileID: 4864563063802704, guid: 90a793745acac0440825348466c2ad5d, type: 2}
       propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864563063802704, guid: 90a793745acac0440825348466c2ad5d, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 4864563063802704, guid: 90a793745acac0440825348466c2ad5d, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -103.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 20126449449669172, guid: 90a793745acac0440825348466c2ad5d,
+        type: 2}
+      propertyPath: m_ClearFlags
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 20126449449669172, guid: 90a793745acac0440825348466c2ad5d,
+        type: 2}
+      propertyPath: orthographic
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -24875,9 +24827,9 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
-  m_Range: 10
-  m_SpotAngle: 86
+  m_Intensity: 1.5
+  m_Range: 15
+  m_SpotAngle: 80
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -26987,7 +26939,7 @@ GameObject:
   - component: {fileID: 1636857644}
   - component: {fileID: 1636857643}
   m_Layer: 0
-  m_Name: Finish_particle
+  m_Name: Finish_Particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27129,7 +27081,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3
+      scalar: 2.07
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -35266,7 +35218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 0.995283, b: 0.995283, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -35519,7 +35471,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 953a50007eafb984496adfd815e4717e, type: 2}
+  - {fileID: 2100000, guid: 26cb9b24d129a3849b68161d50b67629, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

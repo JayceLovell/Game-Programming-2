@@ -21,13 +21,12 @@ public class PlayerScript : MonoBehaviour {
         PlayerDirection = GameObject.FindWithTag("Player").GetComponent<Transform>();
     }
         // Update is called once per frame
-    void Update () {
+    void FixedUpdate () {
         RaycastHit hit;
 
-        if (Physics.Raycast(this.PlayerDirection.position, this.PlayerDirection.forward, out hit))
+        if (Physics.Raycast(this.PlayerDirection.position, this.PlayerDirection.forward, out hit,3))
         {
             if (hit.transform.gameObject.CompareTag("Finish"))
-
             {
 
                 InfoText.gameObject.SetActive(true);
@@ -41,9 +40,8 @@ public class PlayerScript : MonoBehaviour {
             }
             else
             {
-
+                InfoText.text = "";
                 InfoText.gameObject.SetActive(false);
-
             }
         }
         if (Input.GetButtonDown("Fire1"))
