@@ -88,16 +88,14 @@ public class AI : MonoBehaviour
             {
                 animator.SetBool("isPlayerVisible", false);
             }
-            if(hit.transform.gameObject.CompareTag("Door") && OnLink && !_isOpeningDoor)
+            /*if(hit.transform.gameObject.CompareTag("Door") && OnLink && !_isOpeningDoor)
             {
                 navMeshAgent.isStopped = true;
-                Debug.Log("Stopping");
-                Debug.Log("Opening Door");
                 _isOpeningDoor = true;
                 _currentdoorscript=hit.collider.gameObject.GetComponent<DoorScript>();
                 _currentdoorscript.Open();
                 StartCoroutine(Continue());
-            }
+            }*/
         }
         else
         {
@@ -123,11 +121,24 @@ public class AI : MonoBehaviour
         animator.SetInteger("amountOfAmmo",_amountOfAmmo);
         //checks if about to go through door
         OnLink = navMeshAgent.isOnOffMeshLink;
-        /*if (OnLink && !Physics.Raycast(ray, out hit, maxDistanceToCheck))
+        if (OnLink)
         {
-            navMeshAgent.isStopped=true;
-            StopsAndLook();
-        }*/
+            navMeshAgent.isStopped = true;
+            Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, 10f);
+            int i = 0;
+            while (i < hitColliders.Length)
+            {
+                if(hitColliders[i].CompareTag("Door"))
+                {
+                    _isOpeningDoor = true;
+                    _currentdoorscript = hitColliders[i].gameObject.GetComponent<DoorScript>();
+                    _currentdoorscript.Open();
+                    StartCoroutine(Continue());
+                }
+                i++;
+            }
+
+        }
     }
     public void SetNextPoint()
     {
