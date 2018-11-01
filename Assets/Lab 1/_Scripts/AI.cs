@@ -3,17 +3,24 @@ using UnityEngine;
 
 public class AI : MonoBehaviour
 {
+    
+
     private GameObject player;
     private Animator animator;
     private float maxDistanceToCheck = 6.0f;
     private float currentDistance;
     private Vector3 checkDirection;
-    private int currentTarget;
+    public int currentTarget;
     private float distanceFromTarget;
-    private Transform[] waypoints = null;
+    public Transform[] waypoints = null;
     private Ray ray;
     private RaycastHit hit;
     private  int _amountOfAmmo = 10;
+    private bool OnLink;
+    private bool _isOpeningDoor;
+    private bool _rotating;
+    private float _rotation;
+    private DoorScript _currentdoorscript;
 
     // Patrol state variables
     public Transform pointA;
@@ -56,12 +63,14 @@ public class AI : MonoBehaviour
             pointE,
             pointF
         };
-        currentTarget = 0;
+        currentTarget = Random.Range(0,5);
         navMeshAgent.SetDestination(waypoints[currentTarget].position);
+        //
     }
 
     private void Update()
     {
+        OnLink = navMeshAgent.isOnOffMeshLink;
         //First we check distance from the player 
         currentDistance = Vector3.Distance(player.transform.position, transform.position);
         animator.SetFloat("distanceFromPlayer", currentDistance);
@@ -79,6 +88,14 @@ public class AI : MonoBehaviour
             {
                 animator.SetBool("isPlayerVisible", false);
             }
+            /*if(hit.transform.gameObject.CompareTag("Door") && OnLink && !_isOpeningDoor)
+            {
+                navMeshAgent.isStopped = true;
+                _isOpeningDoor = true;
+                _currentdoorscript=hit.collider.gameObject.GetComponent<DoorScript>();
+                _currentdoorscript.Open();
+                StartCoroutine(Continue());
+            }*/
         }
         else
         {
@@ -93,29 +110,54 @@ public class AI : MonoBehaviour
         {
             animator.SetBool("IsOutOfAmmo", false);
         }
+        if (_rotating)
+        {
+            _rotation += Time.deltaTime * 30;
+            transform.rotation = Quaternion.Euler(0, _rotation, 0);
+        }
         //Lastly, we get the distance to the next waypoint target
         distanceFromTarget = Vector3.Distance(waypoints[currentTarget].position, transform.position);
         animator.SetFloat("distanceFromWaypoint", distanceFromTarget);
         animator.SetInteger("amountOfAmmo",_amountOfAmmo);
+        //checks if about to go through door
+        OnLink = navMeshAgent.isOnOffMeshLink;
+        if (OnLink)
+        {
+            navMeshAgent.isStopped = true;
+            Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, 10f);
+            int i = 0;
+            while (i < hitColliders.Length)
+            {
+                if(hitColliders[i].CompareTag("Door"))
+                {
+                    _isOpeningDoor = true;
+                    _currentdoorscript = hitColliders[i].gameObject.GetComponent<DoorScript>();
+                    _currentdoorscript.Open();
+                    StartCoroutine(Continue());
+                }
+                i++;
+            }
+
+        }
     }
     public void SetNextPoint()
     {
         switch (currentTarget)
         {
             case 0:
-                currentTarget = 5;
+                currentTarget = 1;
                 break;
             case 1:
-                currentTarget = 4;
+                currentTarget = 2;
                 break;
             case 2:
                 currentTarget = 3;
                 break;
             case 3:
-                currentTarget = 2;
+                currentTarget = 4;
                 break;
             case 4:
-                currentTarget = 1;
+                currentTarget = 5;
                break;
             case 5:
                currentTarget = 0;
@@ -126,10 +168,29 @@ public class AI : MonoBehaviour
     public void ChasePlayer()
     {
         navMeshAgent.SetDestination(player.transform.position);
+        //navMeshAgent.isStopped = false;
     }
     public void StopsAndLook()
     {
         navMeshAgent.isStopped = true;
-        transform.Rotate(Vector3.right * Time.deltaTime);
+        _rotating = true;
+        StartCoroutine(StopRotation());
+    }
+    IEnumerator Continue()
+    {
+        yield return new WaitForSeconds(3);
+        navMeshAgent.isStopped = false;
+        Debug.Log("Closing door");
+        yield return new WaitForSeconds(.5f);
+        navMeshAgent.isStopped = true;
+        _currentdoorscript.Close();
+        StopsAndLook();
+        yield return new WaitForSeconds(2);
+    }
+    IEnumerator StopRotation()
+    {
+        yield return new WaitForSeconds(10);
+        _rotating = false;
+        navMeshAgent.isStopped = false;
     }
 }
