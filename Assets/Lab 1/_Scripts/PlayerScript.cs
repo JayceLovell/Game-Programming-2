@@ -24,7 +24,7 @@ public class PlayerScript : MonoBehaviour {
     void FixedUpdate () {
         RaycastHit hit;
 
-        if (Physics.Raycast(this.PlayerDirection.position, this.PlayerDirection.forward, out hit,3))
+        if (Physics.Raycast(this.PlayerDirection.position, this.PlayerDirection.forward, out hit,4))
         {
             if (hit.transform.gameObject.CompareTag("Finish"))
             {
@@ -36,7 +36,7 @@ public class PlayerScript : MonoBehaviour {
             else if (hit.transform.gameObject.CompareTag("Door"))
             {
                 InfoText.gameObject.SetActive(true);
-                InfoText.text = "Click To Lift Up Door.\n Door will collapse down in 5 seconds after being opend";
+                InfoText.text = "Click To Lift Up Door.\n Door will collapse down in 5 seconds after being open";
             }
             else
             {
